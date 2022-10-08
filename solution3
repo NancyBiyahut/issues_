@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& arr, int k) {
+      sort(arr.begin() , arr.end());
+        int diff = INT_MAX;
+        int ans = 0;
+        for(int i = 0 ; i <arr.size()  ; i ++)
+        {
+            int first = arr[i];
+            int lo = i+1 , hi = arr.size()-1 ;
+            while(lo < hi)
+            {
+                if((first + arr[lo] +arr[hi]) == k )
+                    return k;
+                else if(abs(first + arr[lo] +arr[hi] - k) < diff)
+                {
+                  diff = abs(first +arr[lo] +arr[hi]- k); 
+                    ans =first +arr[lo] +arr[hi];
+                }
+                if(first +arr[lo] +arr[hi] > k) hi--;
+                else lo++;
+            }
+
+        }
+        return ans;
+    }
+};
