@@ -1,0 +1,58 @@
+class Solution {
+public:
+vector<int>ans;
+vector<int>ans1;
+
+void func(Node * root)
+{
+    queue<Node*>q;
+    q.push(root);
+    while(!q.empty())
+    {
+       ans.push_back(q.front()->data);
+        int n = q.size();
+        for(int i =0 ; i< n ; i++)
+        {
+            Node* curr = q.front() ; q.pop();
+           
+            if(curr->left) q.push(curr->left);
+            if(curr->right) q.push(curr->right);
+            
+        }
+       
+    }
+}
+void func1(Node * root)
+{
+    queue<Node*>q;
+    q.push(root);
+    while(!q.empty())
+    {
+       ans1.push_back(q.front()->data);
+        int n = q.size();
+        for(int i =0 ; i< n ; i++)
+        {
+            Node* curr = q.front() ; q.pop();
+           
+            
+            if(curr->right) q.push(curr->right);
+            if(curr->left) q.push(curr->left);
+            
+        }
+       
+    }
+}
+
+
+
+    vector <int> boundary(Node *root)
+    {
+       func(root);
+       func1(root);
+       reverse(ans1.begin() , ans1.end());
+       ans1.pop_back();
+      for(int i = 0 ; i<ans1.size() ; i ++)
+       ans.push_back(ans1[i]);
+       
+       return ans;
+    }
